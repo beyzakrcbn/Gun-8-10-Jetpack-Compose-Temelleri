@@ -46,6 +46,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CounterScreen() {
     var counter by remember { mutableStateOf(0) }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -55,12 +56,17 @@ fun CounterScreen() {
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(bottom = 32.dp) // Butonlar ve reset arasına boşluk
         ){
-            Button(onClick = {                      }) {
-                Text(text = "-")
+
+            Button(onClick = {counter--})
+            { Text(text = "-") }
+
+            Button(onClick = {counter++}){
+                Text(text = "+")
             }
-            Button(onClick = {                          }) {
+            Button(onClick = {counter= 0 }) {
                 Text(text = "RESET")
             }
         }
