@@ -67,7 +67,7 @@ fun CounterScreen() {
       }
    }
 
-@Preview(showBackground = true)
+@Preview( showBackground = true )
 @Composable
 fun CounterScreenPreview(){
     SayacAppTheme {
