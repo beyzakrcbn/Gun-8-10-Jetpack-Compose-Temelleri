@@ -26,25 +26,34 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import com.example.sayacapp.ui.theme.SayacAppTheme
 
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
-            SayacAppTheme {
+            var useDarkTheme by remember { mutableStateOf(false) }
+
+            SayacAppTheme(darkTheme = useDarkTheme) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    CounterScreen()
+                    CounterScreen(
+                        onToggleTheme = { useDarkTheme = !useDarkTheme },
+                        isDarkThemeActive = useDarkTheme
+                    )
                 }
             }
         }
     }
 }
 
-
 @Composable
-fun CounterScreen() {
+fun CounterScreen(
+    onToggleTheme: () -> Unit,
+    isDarkThemeActive: Boolean
+) {
     var counter by remember { mutableStateOf(0) }
 
     Column(
@@ -52,33 +61,36 @@ fun CounterScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Sayaç: $counter", fontSize = 32.sp)  //sayac =0 yerine $counter (kotlinde string template)
+        Text(text = "Sayaç: $counter", fontSize = 32.sp)
 
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(bottom = 32.dp) // Butonlar ve reset arasına boşluk
-        ){
+            modifier = Modifier.padding(top = 32.dp)
+        ) {
+            Button(onClick = { counter-- }) {
+                Text(text = "-")
+            }
 
-            Button(onClick = {counter--})
-            { Text(text = "-") }
-
-            Button(onClick = {counter++}){
+            Button(onClick = { counter++ }) {
                 Text(text = "+")
             }
-            Button(onClick = {counter= 0 }) {
+
+            Button(onClick = { counter = 0 }) {
                 Text(text = "RESET")
             }
-        }
-      }
-   }
 
-@Preview( showBackground = true )
-@Composable
-fun CounterScreenPreview(){
-    SayacAppTheme {
-        CounterScreen()
+            Button(onClick = onToggleTheme) {
+                Text(text = if (isDarkThemeActive) "Açık Tema" else "Koyu Tema")
+            }
+        }
     }
 }
 
-
+@Preview(showBackground = true)
+@Composable
+fun CounterScreenPreview() {
+    SayacAppTheme {
+        CounterScreen(onToggleTheme = {}, isDarkThemeActive = false)
+    }
+}
