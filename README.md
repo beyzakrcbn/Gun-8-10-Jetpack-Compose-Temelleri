@@ -30,13 +30,18 @@ Jetpack Compose, Google tarafından geliştirilmiş modern Android UI toolkit'id
 
 ## Temel UI Bileşenleri
 Text Bileşeni
+
 Button Bileşeni
+
 Column(Dikey Sıralama)
+
 Row(Yatay Sıralama)
 
 ## State Managment(Durum Yönetimi)
 `remember`, değerleri composition boyunca saklar ve recomposition'da korunmasını sağlar.
+
 `mutableStateOf`, Compose'un state değişikliklerini takip etmesini sağlar.
+
 `State Housting` (Durum Kaldırma) State'i üst component'a taşıyarak yeniden kullanılabilir component'lar oluşturur.
 
 ## Modifier Kullanımı
