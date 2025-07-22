@@ -44,8 +44,9 @@ Modifier'lar, Composable'ların görünümünü, davranışını ve layout'unu d
 
 # Temel Modifier'lar
 
-@Composable
-  fun ModifierExamples() {
+    @Composable
+     fun ModifierExamples() {
+
     Column {
         // Boyut modifier'ları
         Text(
@@ -91,34 +92,31 @@ Modifier'lar, Composable'ların görünümünü, davranışını ve layout'unu d
                 .background(Color.White)
                 .padding(16.dp)
         )
-    }
-}
+    } }
 
 # Zincir Halinde Modifier Kullanımı  !!!!
 
-@Composable
-fun ChainedModifiers() {
-Text(
-"Zincir halinde modifier",
-modifier = Modifier
-.fillMaxWidth() // 1. Genişliği doldur
-.padding(16.dp) // 2. Dış padding ekle
-.background( // 3. Arka plan rengi
-Color.Blue,
-RoundedCornerShape(8.dp)
-)
-.padding(12.dp) // 4. İç padding
-.clickable { /* Tıklama */ } // 5. Tıklanabilir yap
-)
-}
+    @Composable
+    fun ChainedModifiers() { 
+
+     Text(
+         "Zincir halinde modifier",
+            modifier = Modifier
+              .fillMaxWidth() // 1. Genişliği doldur
+              .padding(16.dp) // 2. Dış padding ekle
+              .background( // 3. Arka plan rengi
+             Color.Blue,
+               RoundedCornerShape(8.dp) )
+              .padding(12.dp) // 4. İç padding
+              .clickable { /* Tıklama */ } // 5. Tıklanabilir yap )}
 
 # Theming ve Material Design 3  !!!!!
 
 ## Material Theme Kurulumu
 
-@Composable
-fun MyApp() {
-    MaterialTheme(
+    @Composable
+       fun MyApp() {
+        MaterialTheme(
         colorScheme = lightColorScheme(
             primary = Color(0xFF6200EE),
             secondary = Color(0xFF03DAC6),
@@ -145,13 +143,13 @@ fun MyApp() {
     ) {
         MainScreen()
     }
-}
+
 
 
 ## Dark Theme Desteği
 
-@Composable
-fun MyAppWithDarkTheme() {
+    @Composable
+    fun MyAppWithDarkTheme() {
     val darkTheme = isSystemInDarkTheme()
     
     MaterialTheme(
@@ -172,14 +170,14 @@ fun MyAppWithDarkTheme() {
         }
     ) {
         MainScreen()
-    }
-}
+    }}
+
 
 
 ## Theme Değerlerini Kullanma
 
-@Composable
-fun ThemedComponents() {
+    @Composable
+    fun ThemedComponents() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -206,5 +204,4 @@ fun ThemedComponents() {
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
-    }
-}
+    } }
